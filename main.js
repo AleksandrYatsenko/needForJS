@@ -46,11 +46,13 @@ function startGame(){
     gameArea.appendChild(line);
   }
 
-  for (let i = 0; i < getQuantityElements(100); i++) {
+  for (let i = 0; i < getQuantityElements(100 * setting.traffic); i++) {
     const enemy = document.createElement('div');
     enemy.classList.add('enemy');
     enemy.y = -100 * setting.traffic * (i + 1);
+    enemy.style.left = Math.floor(Math.random() * (gameArea.offsetWidth - 50)) + 'px';
     enemy.style.top = enemy.y + 'px';
+    enemy.style.background = 'transparent url(image/player.png) center / cover no-repeat';
     gameArea.appendChild(enemy);
   }
 
@@ -114,6 +116,7 @@ function moveEnemy () {
 
     if(item.y >= document.documentElement.clientHeight){
       item.y = -100 * setting.traffic;
+      item.style.left = Math.floor(Math.random() * (gameArea.offsetWidth - 50)) + 'px';
     }
   });
 }
