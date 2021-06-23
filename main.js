@@ -28,7 +28,7 @@ const setting = {
   start: false,
   score: 0,
   speed: 3,
-  traffic: 2
+  traffic: 3
 };
 
 function getQuantityElements(heightElement) {
@@ -38,7 +38,7 @@ function getQuantityElements(heightElement) {
 function startGame(){
   start.classList.add('hide');
 
-  for (let i = 0; i < getQuantityElements(50); i++){
+  for (let i = 0; i < getQuantityElements(100); i++){
     const line = document.createElement('div');
     line.classList.add('line');
     line.style.top = (i * 100) + 'px';
@@ -106,4 +106,14 @@ function moveRoad(){
   });
 }
 
-function moveEnemy () {};
+function moveEnemy () {
+  let enemy = document.querySelectorAll('.enemy');
+  enemy.forEach(function(item){
+    item.y += setting.speed * 2;
+    item.style.top = item.y + 'px';
+
+    if(item.y >= document.documentElement.clientHeight){
+      item.y = -100 * setting.traffic;
+    }
+  });
+}
