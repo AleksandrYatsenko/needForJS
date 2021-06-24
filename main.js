@@ -1,3 +1,5 @@
+const MAX_ENEMY = 7;
+
 const score = document.querySelector('.score');
 const start = document.querySelector('.start');
 const gameArea = document.querySelector('.gameArea');
@@ -35,6 +37,8 @@ function getQuantityElements(heightElement) {
   return document.documentElement.clientHeight / heightElement + 1;
 }
 
+const getRandomEnemy = (max) => Math.floor((Math.random() * max) + 1);
+
 function startGame(){
   start.classList.add('hide');
 
@@ -52,7 +56,11 @@ function startGame(){
     enemy.y = -100 * setting.traffic * (i + 1);
     enemy.style.left = Math.floor(Math.random() * (gameArea.offsetWidth - 50)) + 'px';
     enemy.style.top = enemy.y + 'px';
-    enemy.style.background = 'transparent url(image/player.png) center / cover no-repeat';
+    enemy.style.background = `
+        transparent
+        url(image/enemy${getRandomEnemy(MAX_ENEMY)}.png)
+        center / cover
+        no-repeat`;
     gameArea.appendChild(enemy);
   }
 
