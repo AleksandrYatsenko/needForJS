@@ -95,13 +95,17 @@ function playGame() {
 }
 
 function startRun(event) {
-  event.preventDefault();
-  keys[event.key] = true;
+  if (keys.hasOwnProperty(event.key)){
+    event.preventDefault();
+    keys[event.key] = true;
+  }
 }
 
 function stopRun(event) {
-  event.preventDefault();
-  keys[event.key] = false;
+  if (keys.hasOwnProperty(event.key)){
+    event.preventDefault();
+    keys[event.key] = false;
+  }
 }
 
 function moveRoad(){
