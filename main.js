@@ -5,7 +5,11 @@ const start = document.querySelector('.start');
 const gameArea = document.querySelector('.gameArea');
 const car = document.createElement('div');
 
-  car.classList.add('car');
+// const music = document.createElement('embed');
+// music.src = './Wicked.mp3';
+// music.classList.add('visually-hidden');
+const music = new Audio('Wicked.mp3'); // второй вариант вставки музыки;
+car.classList.add('car');
 
 // start.onclick = function () {
 //   start.classList.add('hide');
@@ -30,7 +34,7 @@ const setting = {
   start: false,
   score: 0,
   speed: 3,
-  traffic: 3
+  traffic: 2.5
 };
 
 function getQuantityElements(heightElement) {
@@ -40,6 +44,8 @@ function getQuantityElements(heightElement) {
 const getRandomEnemy = (max) => Math.floor((Math.random() * max) + 1);
 
 function startGame(){
+  music.play(); //вставка музыки к 2му варианту
+  //gameArea.style.minHeight = 800 + 'px';
   start.classList.add('hide');
 
   for (let i = 0; i < getQuantityElements(100); i++){
@@ -123,7 +129,7 @@ function moveRoad(){
 function moveEnemy () {
   let enemy = document.querySelectorAll('.enemy');
   enemy.forEach(function(item){
-    item.y += setting.speed * 2;
+    item.y += setting.speed * 1.5;
     item.style.top = item.y + 'px';
 
     if(item.y >= document.documentElement.clientHeight){
